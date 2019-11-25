@@ -21,7 +21,6 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
     private String pokemonServiceUrl;
 
     @RequestMapping("/")
-    @Value("${pokemonType.service.url}")
     public List<PokemonType> listPokemonsTypes() {
         PokemonType[] result = restTemplate.getForObject(pokemonServiceUrl+"/pokemon-types/", PokemonType[].class);
         if(result != null) return Arrays.asList(result);
@@ -33,6 +32,7 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
         this.restTemplate = restTemplate;
     }
 
+    @Value("${pokemonType.service.url}")
     public void setPokemonTypeServiceUrl(String pokemonServiceUrl) {
         this.pokemonServiceUrl = pokemonServiceUrl ;
     }
