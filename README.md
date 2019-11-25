@@ -21,3 +21,5 @@ Dans config de tomcat : deployement -> application context : mettre /
 - maven : version >= 3
 
 ### 4. Execution
+
+- La première vue : http://localhost:9000 
