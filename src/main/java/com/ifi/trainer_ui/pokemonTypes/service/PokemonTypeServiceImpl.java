@@ -13,18 +13,16 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-@RequestMapping("/pokemon-types")
 public class PokemonTypeServiceImpl implements PokemonTypeService {
 
     private RestTemplate restTemplate;
 
     private String pokemonServiceUrl;
 
-    @RequestMapping("/")
+    @Override
     public List<PokemonType> listPokemonsTypes() {
-        PokemonType[] result = restTemplate.getForObject(pokemonServiceUrl+"/pokemon-types/", PokemonType[].class);
-        if(result != null) return Arrays.asList(result);
-        return null;
+        var result = restTemplate.getForObject(pokemonServiceUrl+"/pokemon-types/", PokemonType[].class);
+        return Arrays.asList(result);
     }
 
     @Autowired
