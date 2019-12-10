@@ -1,11 +1,19 @@
 package com.ifi.trainer_ui.controller;
 
 import com.ifi.trainer_ui.pokemonTypes.bo.Trainer;
+import com.ifi.trainer_ui.pokemonTypes.service.PokemonTypeService;
 import com.ifi.trainer_ui.pokemonTypes.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class TrainerController {
@@ -13,8 +21,12 @@ public class TrainerController {
     @Autowired
     private final TrainerService trainerService;
 
-    TrainerController(TrainerService trainerService){
+    @Autowired
+    private final PokemonTypeService pokemonTypeService;
+
+    TrainerController(TrainerService trainerService, PokemonTypeService pokemonTypeService){
         this.trainerService = trainerService;
+        this.pokemonTypeService = pokemonTypeService;
     }
 
     @GetMapping("/trainers")
@@ -40,5 +52,16 @@ public class TrainerController {
     @DeleteMapping("/trainers/{name}")
     void deleteTrainer(@PathVariable String name){
         trainerService.deleteTrainer(name);
+    }
+
+    @GetMapping("/profile")
+    ModelAndView getProfil(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        User user = (User) auth.getPrincipal();
+        Map<String, Object> model = new HashMap<>();
+        Trainer trainer = trainerService.getTrainer(user.getUsername());
+        model.put("info", trainer);
+        model.put("pokemon_trainer", pokemonTypeService.listPokemonsTypesByTrainer(trainer));
+        return new ModelAndView("profile", "user", model);
     }
 }

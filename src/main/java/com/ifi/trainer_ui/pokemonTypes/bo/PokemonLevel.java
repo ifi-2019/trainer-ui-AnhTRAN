@@ -1,16 +1,15 @@
 package com.ifi.trainer_ui.pokemonTypes.bo;
 
 public class PokemonLevel {
-    private int idPokemonType;
+    private int pokemonType;
     private int level;
-    private PokemonType type;
 
-    public int getIdPokemonType() {
-        return idPokemonType;
+    public int getPokemonType() {
+        return pokemonType;
     }
 
-    public void setIdPokemonType(int idPokemonType) {
-        this.idPokemonType = idPokemonType;
+    public void setPokemonType(int pokemonType) {
+        this.pokemonType = pokemonType;
     }
 
     public int getLevel() {
@@ -19,13 +18,5 @@ public class PokemonLevel {
 
     public void setLevel(int level) {
         this.level = level;
-    }
-
-    public PokemonType getType() {
-        return type;
-    }
-
-    public void setType(PokemonType type) {
-        this.type = type;
     }
 }
