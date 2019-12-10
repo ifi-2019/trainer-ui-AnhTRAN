@@ -1,6 +1,6 @@
 ## IFI - TP 5 - GUI - MVC & Templating
 
-### Thi-Ngoc-Anh TRAN, M2-E-Service, Université de Lille
+### Thi-Ngoc-Anh TRAN, M2-E-Service 2019-2020, Université de Lille
 
 https://juwit.github.io/ifi-2019/cours/05-gui/05-tp-gui.html
 

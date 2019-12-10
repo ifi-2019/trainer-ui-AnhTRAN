@@ -7,6 +7,8 @@ public class Trainer {
 
     private List<PokemonLevel> team;
 
+    private String password;
+
     public Trainer() {
     }
 
@@ -38,5 +40,13 @@ public class Trainer {
     public void replaceTrainer(Trainer trainer) {
         this.name = trainer.getName();
         this.team = trainer.getTeam();
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
