@@ -1,7 +1,7 @@
 <project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.ifi.tp</groupId>
-    <artifactId>ifi-2019-atr</artifactId>
+    <artifactId>trainer-ui-atr</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
