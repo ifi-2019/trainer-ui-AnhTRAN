@@ -4,10 +4,10 @@
 <body>
     {{> layout/navbar}}
     <div class="container">
-        <h1 class="pt-md-5 pb-md-5">Trainer : {{user.info.name}}</h1>
+        <h1 class="pt-md-5 pb-md-5">Trainer : {{user.username}}</h1>
 
         <div class="card-deck">
-            {{#user.pokemon_trainer}}
+            {{#pokemon_trainer}}
             <div class="card">
                 <div class="container-card">
                     <p><b>{{name}}</b></p>
@@ -25,7 +25,7 @@
                     </p>
                 </div>
             </div>
-            {{/user.pokemon_trainer}}
+            {{/pokemon_trainer}}
         </div>
 
 

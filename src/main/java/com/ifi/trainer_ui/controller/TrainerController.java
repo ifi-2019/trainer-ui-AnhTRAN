@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class TrainerController {
@@ -66,9 +64,6 @@ public class TrainerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
         Trainer trainer = trainerService.getTrainer(user.getUsername());
-        Map<String, Object> model = new HashMap<>();
-        model.put("info", trainer);
-        model.put("pokemon_trainer", pokemonTypeService.listPokemonsTypesByTrainer(trainer));
-        return new ModelAndView("profile", "user", model);
+        return new ModelAndView("profile", "pokemon_trainer", pokemonTypeService.listPokemonsTypesByTrainer(trainer));
     }
 }

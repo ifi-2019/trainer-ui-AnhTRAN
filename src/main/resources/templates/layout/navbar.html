@@ -2,12 +2,6 @@
 
     <ul class="">
         <li class="nav-item">
-            <a class="nav-link" href="pokemon">
-                <img src="/images/pokemon.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                Pokemon
-            </a>
-        </li>
-        <li class="nav-item">
             <a class="nav-link" href="pokedex">
                 <img src="/images/pokedex.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
                 Pokedex
@@ -21,20 +15,20 @@
         </li>
 
         <li class="nav-item navbar">
-            <li class="nav-item">
-                <a class="nav-link" href="profile">
-                    <img src="/images/trainer.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    My Profile
-                </a>
-            </li>
-            {{#user.info}}
+            {{#user}}
             <ul class="navbar-nav nav-item-right">
                 <li class="nav-item">
                     <a href="/logout">Log out</a>
                 </li>
-                <li class="nav-item navbar-text">Welcome {{name}}</li>
+                <li class="nav-item">
+                    <a class="nav-link" href="profile">
+                        <img src="/images/trainer.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                        My Profile
+                    </a>
+                </li>
+                <li class="nav-item navbar-text">Welcome {{username}}</li>
             </ul>
-            {{/user.info}}
+            {{/user}}
         </li>
     </ul>
 
