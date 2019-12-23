@@ -1,6 +1,7 @@
 package com.ifi.trainer_ui.controller;
 
 import com.ifi.trainer_ui.pokemonTypes.bo.Trainer;
+import com.ifi.trainer_ui.pokemonTypes.bo.TrainerPokemonTypeLevel;
 import com.ifi.trainer_ui.pokemonTypes.service.PokemonTypeService;
 import com.ifi.trainer_ui.pokemonTypes.service.TrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -31,7 +33,12 @@ public class TrainerController {
 
     @GetMapping("/trainers")
     ModelAndView getAllTrainers(){
-        return new ModelAndView("trainers", "trainers", trainerService.getAllTrainers());
+        List<TrainerPokemonTypeLevel> trainerPokemonTypeLevels = new ArrayList<>();
+        Iterable<Trainer> trainers = trainerService.getAllTrainers();
+        for (Trainer trainer : trainers) {
+            trainerPokemonTypeLevels.add(new TrainerPokemonTypeLevel(trainer.getName(), pokemonTypeService.listPokemonsTypesLevelByTrainer(trainer)));
+        }
+        return new ModelAndView("trainers", "trainers", trainerPokemonTypeLevels);
     }
 
     @GetMapping("/trainers/{name}")
@@ -58,8 +65,8 @@ public class TrainerController {
     ModelAndView getProfil(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
-        Map<String, Object> model = new HashMap<>();
         Trainer trainer = trainerService.getTrainer(user.getUsername());
+        Map<String, Object> model = new HashMap<>();
         model.put("info", trainer);
         model.put("pokemon_trainer", pokemonTypeService.listPokemonsTypesByTrainer(trainer));
         return new ModelAndView("profile", "user", model);

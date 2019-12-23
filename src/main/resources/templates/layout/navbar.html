@@ -1,4 +1,3 @@
-{{> layout/header}}
 <nav class="navbar">
 
     <ul class="">
@@ -22,16 +21,16 @@
         </li>
 
         <li class="nav-item navbar">
+            <li class="nav-item">
+                <a class="nav-link" href="profile">
+                    <img src="/images/trainer.png" width="30" height="30" class="d-inline-block align-top" alt="">
+                    My Profile
+                </a>
+            </li>
             {{#user.info}}
             <ul class="navbar-nav nav-item-right">
                 <li class="nav-item">
-                    <a href="/logout">Click here to logout</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="profile">
-                        <img src="/images/trainer.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                        My Profile
-                    </a>
+                    <a href="/logout">Log out</a>
                 </li>
                 <li class="nav-item navbar-text">Welcome {{name}}</li>
             </ul>

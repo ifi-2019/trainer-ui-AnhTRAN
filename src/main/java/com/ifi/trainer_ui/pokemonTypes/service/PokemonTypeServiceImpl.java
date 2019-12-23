@@ -2,13 +2,11 @@ package com.ifi.trainer_ui.pokemonTypes.service;
 
 import com.ifi.trainer_ui.pokemonTypes.bo.PokemonLevel;
 import com.ifi.trainer_ui.pokemonTypes.bo.PokemonType;
+import com.ifi.trainer_ui.pokemonTypes.bo.PokemonTypeLevel;
 import com.ifi.trainer_ui.pokemonTypes.bo.Trainer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -49,6 +47,17 @@ public class PokemonTypeServiceImpl implements PokemonTypeService {
         List<PokemonType> result = new ArrayList<>();
         for (PokemonLevel pl : trainer.getTeam())
             result.add(restTemplate.getForObject(pokemonServiceUrl+"/pokemon-types/" + pl.getPokemonType(), PokemonType.class));
+        return result;
+    }
+
+    @Override
+    public List<PokemonTypeLevel> listPokemonsTypesLevelByTrainer(Trainer trainer) {
+        List<PokemonTypeLevel> result = new ArrayList<>();
+        PokemonType pt = null;
+        for (PokemonLevel pl : trainer.getTeam()) {
+            pt = restTemplate.getForObject(pokemonServiceUrl + "/pokemon-types/" + pl.getPokemonType(), PokemonType.class);
+            result.add(new PokemonTypeLevel(pt, pl.getLevel()));
+        }
         return result;
     }
 }
