@@ -10,18 +10,19 @@
             {{#pokemon_trainer}}
             <div class="card">
                 <div class="container-card">
-                    <p><b>{{name}}</b></p>
-                    <p>Id : {{id}}</p>
+                    <p><b>{{pokemonType.name}}</b></p>
+                    <p>Id : {{pokemonType.id}}</p>
+                    <p>Level : {{level}}</p>
                 </div>
-                <span><img class="card-img-top" src="{{sprites.front_default}}" alt="Pokemon" style="width:100%"/></span>
+                <span><img class="card-img-top" src="{{pokemonType.sprites.front_default}}" alt="Pokemon" style="width:100%"/></span>
                 <div class="card-header">
                     <p>
-                        <span class="badge">Speed : {{stats.speed}}</span>
-                        <span class="badge">Attack : {{stats.attack}}</span>
+                        <span class="badge">Speed : {{pokemonType.stats.speed}}</span>
+                        <span class="badge">Attack : {{pokemonType.stats.attack}}</span>
                     </p>
                     <p>
-                        <span class="badge">Defense : {{stats.defense}}</span>
-                        <span class="badge">HP : {{stats.hp}}</span>
+                        <span class="badge">Defense : {{pokemonType.stats.defense}}</span>
+                        <span class="badge">HP : {{pokemonType.stats.hp}}</span>
                     </p>
                 </div>
             </div>

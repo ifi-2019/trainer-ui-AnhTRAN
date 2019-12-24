@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -64,6 +65,10 @@ public class TrainerController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = (User) auth.getPrincipal();
         Trainer trainer = trainerService.getTrainer(user.getUsername());
-        return new ModelAndView("profile", "pokemon_trainer", pokemonTypeService.listPokemonsTypesByTrainer(trainer));
+        if  (trainer == null) {
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return null;
+        }
+        return new ModelAndView("profile", "pokemon_trainer", pokemonTypeService.listPokemonsTypesLevelByTrainer(trainer));
     }
 }
